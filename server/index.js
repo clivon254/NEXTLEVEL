@@ -4,6 +4,7 @@ import "dotenv/config"
 import mongoose from "mongoose"
 import express from "express"
 import cors from "cors"
+import authRouter from "./router/autRoute.js"
 
 
 
@@ -22,6 +23,10 @@ app.use(express.json())
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("DB CONNECTED"))
 .catch((err) => console.log(err))
+
+
+// ROUTE
+app.use("/api/auth", authRouter)
 
 
 
