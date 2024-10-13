@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import express from "express"
 import cors from "cors"
 import authRouter from "./router/autRoute.js"
+import userRouter from "./router/userRoute.js"
 
 
 
@@ -19,6 +20,7 @@ app.use(cors())
 app.use(express.json())
 
 
+
 // DB CONECTION
 mongoose.connect(process.env.MONGO_URL)
 .then(() => console.log("DB CONNECTED"))
@@ -27,6 +29,9 @@ mongoose.connect(process.env.MONGO_URL)
 
 // ROUTE
 app.use("/api/auth", authRouter)
+
+
+app.use("/api/user", userRouter)
 
 
 
