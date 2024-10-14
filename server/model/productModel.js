@@ -23,6 +23,8 @@ const productSchema = new mongoose.Schema({
 
     tag2:{type:String, required:true},
 
+    sizes:{type:Array, required:true},
+
     rating:{type:Number, default:5}
 },
   {

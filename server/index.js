@@ -7,6 +7,7 @@ import cors from "cors"
 import authRouter from "./router/autRoute.js"
 import userRouter from "./router/userRoute.js"
 import productRouter from "./router/productRoute.js"
+import cartRouter from "./router/cartRoute.js"
 
 
 
@@ -40,6 +41,7 @@ app.use("/api/user", userRouter)
 app.use("/api/product", productRouter)
 
 
+app.use("/api/cart", cartRouter)
 
 
 

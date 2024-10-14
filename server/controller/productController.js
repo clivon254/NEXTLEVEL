@@ -11,12 +11,12 @@ export const createProduct = async (req,res,next) => {
         return next(errorHandler(403,"ony admin are allowed to add product"))
     }
 
-    const {name,description,images,instock,regularPrice,discountPrice,wholesalePrice,tag1,tag2} = req.body
+    const {name,description,images,instock,regularPrice,discountPrice,wholesalePrice,tag1,tag2,sizes} = req.body
 
     try
     {
         const product = new Product({
-            name,description,images,instock,regularPrice,discountPrice,wholesalePrice,tag1,tag2
+            name,description,images,instock,regularPrice,discountPrice,wholesalePrice,tag1,tag2,sizes
         })
 
         await product.save()
@@ -55,6 +55,11 @@ export const getProduct = async (req,res,next) => {
     try
     {
         const product = await Product.findById(productId)
+
+        if(!product)
+        {
+            return next(errorHandler(404,"product not found"))
+        }
 
         res.status(200).json({success:true ,product})
 
@@ -96,7 +101,8 @@ export const updateProduct = async (req,res,next) => {
                    discountPrice:req.body.discountPrice,
                    wholesalePricePrice:req.body.wholesalePricePrice,
                    tag1:req.body.tag1,
-                   tag2:req.body.tag2
+                   tag2:req.body.tag2,
+                   sizes:req.body.sizes
                 }
             },
             {new:true}
