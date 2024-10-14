@@ -9,6 +9,7 @@ import userRouter from "./router/userRoute.js"
 import productRouter from "./router/productRoute.js"
 import cartRouter from "./router/cartRoute.js"
 import orderRouter from "./router/orderRoute.js"
+import reveiwRouter from "./router/reveiwRoute.js"
 
 
 
@@ -46,6 +47,11 @@ app.use("/api/cart", cartRouter)
 
 
 app.use("/api/order", orderRouter)
+
+
+app.use("/api/reveiw", reveiwRouter)
+
+
 
 
 //API

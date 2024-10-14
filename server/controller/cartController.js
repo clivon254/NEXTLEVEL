@@ -42,8 +42,6 @@ export const addToCart = async (req,res,next) => {
         }
         else
         {
-            cartData[itemId] = {}
-
             cartData[itemId][size] = 1
         }
 
