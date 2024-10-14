@@ -8,6 +8,7 @@ import authRouter from "./router/autRoute.js"
 import userRouter from "./router/userRoute.js"
 import productRouter from "./router/productRoute.js"
 import cartRouter from "./router/cartRoute.js"
+import orderRouter from "./router/orderRoute.js"
 
 
 
@@ -43,6 +44,8 @@ app.use("/api/product", productRouter)
 
 app.use("/api/cart", cartRouter)
 
+
+app.use("/api/order", orderRouter)
 
 
 //API
