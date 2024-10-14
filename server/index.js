@@ -6,6 +6,7 @@ import express from "express"
 import cors from "cors"
 import authRouter from "./router/autRoute.js"
 import userRouter from "./router/userRoute.js"
+import productRouter from "./router/productRoute.js"
 
 
 
@@ -27,11 +28,18 @@ mongoose.connect(process.env.MONGO_URL)
 .catch((err) => console.log(err))
 
 
+
+
 // ROUTE
 app.use("/api/auth", authRouter)
 
 
 app.use("/api/user", userRouter)
+
+
+app.use("/api/product", productRouter)
+
+
 
 
 

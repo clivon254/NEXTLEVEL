@@ -19,6 +19,10 @@ const productSchema = new mongoose.Schema({
 
     wholesalePrice:{type:Number, required:true},
 
+    tag1:{type:String, required:true},
+
+    tag2:{type:String, required:true},
+
     rating:{type:Number, default:5}
 },
   {
