@@ -1,10 +1,16 @@
 
 import Coupon from "../model/coupons.js"
+import { errorHandler } from "../utils/error.js"
 
 
 export const generateCoupon = async (req,res,next) => {
 
     const {discount,maxUses} = req.body
+
+    if(!req.user.isAdmin)
+    {
+        return next(errorHandler(403,"You not allowed to generated coupons"))
+    }
 
     try
     {
@@ -74,7 +80,7 @@ export const getCoupon = async (req,res,next) => {
         const coupons = await Coupon.find({})
 
         res.status(200).json({success:true , coupons})
-        
+
     }
     catch(error)
     {
