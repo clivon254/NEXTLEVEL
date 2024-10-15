@@ -4,6 +4,26 @@ import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header'
 import FooterComp from './components/FooterComp'
+import Home from './pages/Home'
+import OnlyAdmin from './pages/OnlyAdmin'
+import Dashboard from './pages/Dashboard'
+import Analytics from './pages/Analytics'
+import AddProduct from './pages/AddProduct'
+import EditProduct from './pages/EditProduct'
+import Coupon from './pages/Coupon'
+import Users from './pages/Users'
+import Products from './pages/Products'
+import OrderAdmin from './pages/OrderAdmin'
+import Contact from './pages/Contact'
+import ProductDetails from './pages/ProductDetails'
+import Cart from './pages/Cart'
+import CheckOut from './pages/CheckOut'
+import Profile from './pages/Profile'
+import SignIn from './pages/SignIn'
+import Search from './pages/search'
+import Order from './pages/Order'
+
+
 
 export default function App() {
 
@@ -19,7 +39,43 @@ export default function App() {
 
           <Routes>
 
-            <Route path="/"/>
+            <Route path="/" element={<Home/>}/>
+
+            <Route path="/contact" element={<Contact/>}/>
+
+            <Route path="/produc/:productId" element={<ProductDetails/>}/>
+
+            <Route path="/cart" element={<Cart/>}/>
+
+            <Route path="/checkout" element={<CheckOut/>}/>
+
+            <Route path="/profile" element={<Profile/>}/>
+
+            <Route path="/sign-in" element={<SignIn/>}/>
+
+            <Route path="/order" element={<Order/>}/>
+
+            <Route path="/search" element={<Search/>}/>
+
+            <Route element={<OnlyAdmin/>}>
+
+              <Route path="/dashboard" element={<Dashboard/>}/>
+
+              <Route path="/analytic" element={<Analytics/>}/>
+
+              <Route path="/add-product" element={<AddProduct/>}/>
+
+              <Route path="/products" element={<Products/>}/>
+
+              <Route path="/edit-product/:productId" element={<EditProduct/>}/>
+
+              <Route path="/coupon" element={<Coupon/>}/>
+
+              <Route path="/users" element={<Users/>}/>
+
+              <Route path="/order-admin" element={<OrderAdmin/>}/>
+
+            </Route>
 
           </Routes>
           
