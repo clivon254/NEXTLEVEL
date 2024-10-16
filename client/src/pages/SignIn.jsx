@@ -54,6 +54,8 @@ export default function SignIn() {
         {
           dispatch(signInSuccess(res.data.rest))
 
+          setFormData({})
+
           localStorage.setItem("token", res.data.token)
 
           setToken(res.data.token)
@@ -81,6 +83,9 @@ export default function SignIn() {
 
             toast.success("You have successfully signed up")
 
+
+            setFormData({})
+
           }
           else
           {
@@ -95,7 +100,7 @@ export default function SignIn() {
       console.log(error.message)
 
       dispatch(signInFailure(error.message))
-      
+
     }
 
   }

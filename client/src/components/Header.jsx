@@ -11,6 +11,8 @@ import { MdClose, MdContactPage, MdContactPhone, MdDarkMode, MdHome, MdLightMode
 import { toggleTheme } from '../redux/theme/themeSlice'
 import DashSide from './DashSide'
 import { signOutSuccess } from '../redux/user/userSlice'
+import {toast} from "sonner"
+
 
 export default function Header() {
 
@@ -32,6 +34,8 @@ export default function Header() {
       dispatch(signOutSuccess())
 
       localStorage.removeItem("token")
+
+      toast.success("you have signed out successfully")
 
       navigate('/')
     }
@@ -83,7 +87,7 @@ export default function Header() {
           {/* nav */}
           <nav className="hidden md:block">
 
-            <div className="flex items-center gap-x-20 lg:gap-x-24 2xl:gap-x-30">
+            <div className="flex items-center gap-x-10 lg:gap-x-24 2xl:gap-x-30">
 
                 <NavLink to="/" className={({isActive}) => isActive ? "active-link" : "active"}>
                    <MdHome size={20}/> Home
@@ -158,17 +162,18 @@ export default function Header() {
                   label={
                     <Avatar
                       alt="user"
-                      imgc={currentUser.profilePicture}
+                      imgc={currentUser?.profilePicture}
                       rounded
+                      className="shadow-md"
                     />
                   }
                 >
 
                   <Dropdown.Header>
 
-                    <span className=""></span>
+                    <span className="block text-sm">{currentUser?.username}</span>
 
-                    <span className=""></span>
+                    <span className="block text-sm">{currentUser?.email}</span>
 
                   </Dropdown.Header>
 
