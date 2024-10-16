@@ -10,13 +10,15 @@ export default function StoreContextProvider(props){
   
   const url = "http://localhost:1200"
 
-  const {open, setOpen} = useState(false)
+  const [open, setOpen] = useState(false)
 
   const contextValue = {
     url,
     open,
     setOpen
   }
+
+  
 
   return (
     

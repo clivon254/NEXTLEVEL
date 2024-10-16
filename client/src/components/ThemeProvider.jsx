@@ -11,7 +11,7 @@ export default function ThemeProvider({children}) {
 
        <div className={theme}>
 
-        <div className="bg-bgLight dark:bg-bgDark">
+        <div className="bg-bgLight dark:bg-bgDark text-textLight dark:text-textDark">
 
             {children}
 
