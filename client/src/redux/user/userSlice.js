@@ -33,9 +33,8 @@ const userSlice = createSlice({
 
             state.loading = false
 
-            state.error= action.payload
+            state.error = action.payload
 
-            state.currentUser = null
         },
 
         updateStart:(state) => {

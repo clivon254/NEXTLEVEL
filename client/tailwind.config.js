@@ -26,7 +26,7 @@ export default {
         primaryDark:"#9BF272",
         buttonDark:"#7ABF5A",
 
-      }
+      },
 
     },
   },

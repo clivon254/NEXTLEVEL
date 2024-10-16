@@ -5,11 +5,12 @@ import React, { useContext } from 'react'
 import {Avatar, Drawer, Dropdown} from "flowbite-react"
 import { useDispatch, useSelector } from 'react-redux'
 import { StoreContext } from '../context/store'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import Logo from './Logo'
 import { MdClose, MdContactPage, MdContactPhone, MdDarkMode, MdHome, MdLightMode, MdMenu, MdSearch, MdShop, MdShoppingCart } from "react-icons/md"
 import { toggleTheme } from '../redux/theme/themeSlice'
 import DashSide from './DashSide'
+import { signOutSuccess } from '../redux/user/userSlice'
 
 export default function Header() {
 
@@ -21,6 +22,25 @@ export default function Header() {
 
   const dispatch = useDispatch()
 
+  const navigate = useNavigate()
+
+  // handleSignout
+  const handleSignOut = () => {
+
+    try
+    {
+      dispatch(signOutSuccess())
+
+      localStorage.removeItem("token")
+
+      navigate('/')
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
+
+  }
 
   return (
 
@@ -206,7 +226,7 @@ export default function Header() {
                 
                   <Dropdown.Divider/>
 
-                  <Dropdown.Item>
+                  <Dropdown.Item onClick={handleSignOut}>
                     Sign out
                   </Dropdown.Item>
 
@@ -216,7 +236,7 @@ export default function Header() {
                 (
                   <Link to="/sign-in">
 
-                    <button className="btn">
+                    <button className="btn rounded-full">
                       sign in
                     </button>
 

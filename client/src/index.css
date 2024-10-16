@@ -10,7 +10,7 @@
 /* utilities */
 .btn
 {
-    @apply bg-buttonLight dark:bg-buttonDark text-gray-100  px-4 py-2 rounded-full cursor-pointer
+    @apply bg-buttonLight dark:bg-buttonDark text-gray-100  px-4 py-2  cursor-pointer
 }
 
 .active
@@ -23,3 +23,17 @@
     @apply font-semibold text-primaryLight dark:text-primaryDark uppercase text-sm flex items-center gap-x-2
 }
 
+.section
+{
+    @apply w-full p-5 mx-auto
+}
+
+.input
+{
+    @apply w-full rounded-xl focus:border-secondaryLight focus:outline-0 bg-bgLight dark:text-slate-700
+}
+
+input[type="text"]:focus ~ .input-text,
+input[type="text"]:not(:placeholder-shown) ~ .input-text{
+  @apply text-blue-500 transform -translate-y-5 -translate-x-2 scale-75;
+}

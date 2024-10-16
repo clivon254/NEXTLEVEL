@@ -22,7 +22,7 @@ import Profile from './pages/Profile'
 import SignIn from './pages/SignIn'
 import Search from './pages/search'
 import Order from './pages/Order'
-
+import {Toaster} from "sonner"
 
 
 export default function App() {
@@ -30,6 +30,8 @@ export default function App() {
   return (
 
    <BrowserRouter>
+
+      <Toaster richColors/>
 
       <main className="w-full min-h-screen flex flex-col">
 
