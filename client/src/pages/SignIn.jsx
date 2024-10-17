@@ -186,7 +186,13 @@ export default function SignIn() {
               {loading 
                 ? 
                 (
-                   "Loading ...."
+                  <>
+                      <span className="flex items-center gap-x-3 justify-center">
+
+                              <span className="Loading"/> Loading ...
+
+                      </span>
+                  </>
                 ) 
                 : 
                 (

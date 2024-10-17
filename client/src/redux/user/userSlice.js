@@ -45,13 +45,6 @@ const userSlice = createSlice({
 
         },
 
-        updateFailure:(state,action) => {
-
-            state.loading = false
-
-            state.error = action.payload
-        },
-
         updateSuccess:(state,action) => {
 
             state.loading = false
@@ -59,6 +52,13 @@ const userSlice = createSlice({
             state.currentUser = action.payload
 
             state.error = null
+        },
+
+        updateFailure:(state,action) => {
+
+            state.loading = false
+
+            state.error = action.payload
         },
 
         deleteUserSuccess:(state) => {

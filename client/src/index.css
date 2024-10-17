@@ -13,6 +13,11 @@
     @apply bg-buttonLight dark:bg-buttonDark text-gray-100  px-4 py-2  cursor-pointer
 }
 
+.btn2
+{
+    @apply bg-textLight dark:bg-textDark text-slate-200 dark:text-slate-700   px-4 py-2  cursor-pointer
+}
+
 .active
 {
     @apply font-semibold text-secondaryLight dark:text-secondaryDark uppercase text-sm flex items-center gap-x-2
@@ -41,4 +46,20 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text{
 .Loading
 {
     @apply block rounded-full h-7 w-7 animate-spin border-4  border-r-textLight dark:border-r-textLight
+}
+
+.title
+{
+    @apply text-2xl md:text-3xl lg:text-4xl font-serif
+}
+
+
+.size
+{
+    @apply bg-slate-200 dark:bg-slate-500 py-1 px-3 cursor-pointer rounded-xl 
+}
+
+.size-active
+{
+    @apply border-2 border-black  dark:border-secondaryDark
 }

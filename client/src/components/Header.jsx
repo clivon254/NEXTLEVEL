@@ -162,7 +162,7 @@ export default function Header() {
                   label={
                     <Avatar
                       alt="user"
-                      imgc={currentUser?.profilePicture}
+                      img={currentUser?.profilePicture}
                       rounded
                       className="shadow-md"
                     />
@@ -185,7 +185,7 @@ export default function Header() {
 
                       <Link to='/dashboard'>
 
-                        <Dropdown.Item>Profile</Dropdown.Item>
+                        <Dropdown.Item>Dashboard</Dropdown.Item>
                     
                       </Link>
 
@@ -203,7 +203,7 @@ export default function Header() {
 
                       <Link to='/add-product'>
 
-                        <Dropdown.Item>Profile</Dropdown.Item>
+                        <Dropdown.Item>Add Product</Dropdown.Item>
                   
                       </Link>
 
@@ -216,16 +216,16 @@ export default function Header() {
                   </>
                   )}
 
-                  <Link to='/profile'>
-
-                    <Dropdown.Item>Profile</Dropdown.Item>
-                  
-                  </Link>
-
 
                   <Link to='/order'>
 
                     <Dropdown.Item>Orders</Dropdown.Item>
+                  
+                  </Link>
+
+                  <Link to='/profile'>
+
+                    <Dropdown.Item>Profile</Dropdown.Item>
                   
                   </Link>
                 

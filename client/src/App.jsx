@@ -46,7 +46,7 @@ export default function App() {
 
             <Route path="/contact" element={<Contact/>}/>
 
-            <Route path="/produc/:productId" element={<ProductDetails/>}/>
+            <Route path="/product/:productId" element={<ProductDetails/>}/>
 
             <Route path="/cart" element={<Cart/>}/>
 

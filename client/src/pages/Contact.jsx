@@ -1,10 +1,11 @@
 
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function Contact(){
 
+ const {currentUser} = useSelector(state => state.user)
  
-
   return (
 
     <div className="mx-10">
@@ -22,6 +23,8 @@ export default function Contact(){
         </span>
 
       </label>
+
+     
 
     </div>
   )
