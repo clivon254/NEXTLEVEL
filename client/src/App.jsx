@@ -23,6 +23,7 @@ import SignIn from './pages/SignIn'
 import Search from './pages/search'
 import Order from './pages/Order'
 import {Toaster} from "sonner"
+import ForgotPassword from './pages/ForgotPassword'
 
 
 export default function App() {
@@ -56,6 +57,8 @@ export default function App() {
             <Route path="/sign-in" element={<SignIn/>}/>
 
             <Route path="/order" element={<Order/>}/>
+
+            <Route path="/forgot-password" element={<ForgotPassword/>}/>
 
             <Route path="/search" element={<Search/>}/>
 

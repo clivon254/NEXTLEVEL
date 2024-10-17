@@ -37,3 +37,8 @@ input[type="text"]:focus ~ .input-text,
 input[type="text"]:not(:placeholder-shown) ~ .input-text{
   @apply text-blue-500 transform -translate-y-5 -translate-x-2 scale-75;
 }
+
+.Loading
+{
+    @apply block rounded-full h-5 w-5 animate-spin border-r-4 border-textDark dark:border-textLight
+}
