@@ -78,7 +78,7 @@ export default function Header() {
           </div>
 
           {/* logo */}
-          <div className="">
+          <div className="hidden md:block">
 
             <Logo/>
 
