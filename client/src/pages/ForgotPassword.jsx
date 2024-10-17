@@ -73,9 +73,9 @@ export default function ForgotPassword() {
 
     return (
 
-      <section className="section">
+      <section className="section h-[60vh]">
 
-        <div className="w-full flex flex-col gap-y-10 items-center justify-center">
+        <div className="w-full h-full flex flex-col gap-y-10 items-center justify-center">
 
             <h2 className="text-xl md:text-2xl lg:text-4xl font-serif">Forgot Password</h2>
 
@@ -103,7 +103,7 @@ export default function ForgotPassword() {
                     {Loading ? 
                      (
                         <>
-                            <span className="flex items-center gap-x-3">
+                            <span className="flex items-center justify-center gap-x-3">
 
                                     <span className="Loading"/> Loading ...
 

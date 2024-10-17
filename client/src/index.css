@@ -40,5 +40,5 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text{
 
 .Loading
 {
-    @apply block rounded-full h-5 w-5 animate-spin border-r-4 border-textDark dark:border-textLight
+    @apply block rounded-full h-7 w-7 animate-spin border-4  border-r-textLight dark:border-r-textLight
 }
