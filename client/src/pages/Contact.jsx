@@ -1,11 +1,20 @@
 
-import React, { useState } from "react";
+import React, { useState ,useEffect, useContext} from "react";
 import { useSelector } from "react-redux";
+import axios from "axios"
+import { StoreContext } from "../context/store";
+
 
 export default function Contact(){
 
- const {currentUser} = useSelector(state => state.user)
+ const {currentUser,} = useSelector(state => state.user)
+  
+  const [cartItems, setCartItems] = useState()
+
+  const {token,url} = useContext(StoreContext)
+
  
+
   return (
 
     <div className="mx-10">

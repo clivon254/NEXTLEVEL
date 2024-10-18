@@ -11,7 +11,7 @@ const reveiwRouter = express.Router()
 reveiwRouter.post("/create-reveiw/:productId", verifyToken, createReveiw)
 
 
-reveiwRouter.get("/get-reveiws/:productId", verifyToken, getReveiws)
+reveiwRouter.get("/get-reveiws/:productId", getReveiws)
 
 
 reveiwRouter.put("/update-reveiw/:productId", verifyToken, updateReveiw)

@@ -25,6 +25,9 @@ export default function StoreContextProvider(props){
   const [productsLoading, setProductsLoading] = useState(false)
 
   const [showModal, setShowModel] = useState(false)
+   
+  const [cartItems, setCartItems] = useState([])
+  
 
   // fetchProducts
   const fetchProducts  = async () => {
@@ -66,16 +69,105 @@ export default function StoreContextProvider(props){
 
   }
 
+
+  // totalCart
+  const getTotalCartAmount = () => {
+
+    
+
+    try
+    {
+       let totalAmount = 0 ;
+
+        for(const item in cartItems)
+        {
+          if(cartItems[item] > 0)
+          {
+             let itemInfo = products.find((product) => product._id === item)
+
+             if(itemInfo)
+             {
+              totalAmount += itemInfo.discountPrice * cartItems[item]
+             }
+          }
+
+        }
+
+        return totalAmount
+
+    }
+    catch(error)
+    {}
+
+  }
+
+ // fetchCartItems
+ const fetchCartItems = async (token) => {
+
+  try
+  {
+
+    const res = await axios.get(url + "/api/cart/get-cart",{headers:{token}})
+
+    if(res.data.success)
+    {
+      setCartItems(res.data.cartData)
+    }
+    else
+    {
+      console.log("Check the api")
+    }
+
+  }
+  catch(error)
+  {
+    console.log(error.message)
+  }
+
+ }
+
+  //  getCartCount
+  const getCartCount = () => {
+
+    let totalCount = 0 ;
+
+    for(const items in cartItems)
+    {
+      for(const item in cartItems[items])
+      {
+        try
+        {
+          if(cartItems[items][item] > 0)
+          {
+            totalCount += cartItems[items][item]
+          }
+        }
+        catch(error)
+        {
+          console.log(error.message)
+        }
+      }
+    }
+
+    return totalCount
+
+  }
  
+  console.log(cartItems)
+
 
   useEffect(() => {
 
     if(localStorage.getItem("token"))
     {
       setToken(localStorage.getItem("token"))
+
+      fetchCartItems(localStorage.getItem("token"))
+
     }
 
     fetchProducts()
+
 
   },[])
 
@@ -92,6 +184,8 @@ export default function StoreContextProvider(props){
     productsLoading,
     setProductsLoading,
     fetchProducts,
+    getTotalCartAmount,
+    getCartCount
   }
  
 

@@ -17,6 +17,8 @@ import {toast} from "sonner"
 export default function Header() {
 
   const {currentUser} = useSelector(state => state.user)
+  
+  const {getCartCount} = useContext(StoreContext)
 
   const {theme} = useSelector(state => state.theme)
 
@@ -25,6 +27,7 @@ export default function Header() {
   const dispatch = useDispatch()
 
   const navigate = useNavigate()
+
 
   // handleSignout
   const handleSignOut = () => {
@@ -45,6 +48,7 @@ export default function Header() {
     }
 
   }
+
 
   return (
 
@@ -143,11 +147,22 @@ export default function Header() {
 
               <Link 
                 to="/cart"
-                classNAME="cursor-pointer"
+                classNAME="cursor-pointer "
               >
+                <div className="relative">
 
-                <MdShoppingCart size={24}/>
+                    {currentUser &&(
 
+                        <span 
+                            className="absolute bottom-4 left-2 h-3 w-3 bg-primaryLight dark:bg-primaryDark dark:text-gray-600 text-gray-300 grid place-content-center p-3 rounded-full"
+                        >
+                          {getCartCount()}
+                        </span>
+
+                    )}
+                    <MdShoppingCart size={24}/>
+                    
+                </div>
               </Link>
 
             </div>
@@ -164,7 +179,6 @@ export default function Header() {
                       alt="user"
                       img={currentUser?.profilePicture}
                       rounded
-                      className="shadow-md"
                     />
                   }
                 >

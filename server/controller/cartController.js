@@ -41,7 +41,8 @@ export const addToCart = async (req,res,next) => {
             }
         }
         else
-        {
+        {  
+            cartData[itemId] = {}
             cartData[itemId][size] = 1
         }
 
@@ -107,7 +108,7 @@ export const removeFromCart = async (req,res,next) => {
 
 export const getCart = async (req,res,next) => {
 
-    const {id} = req.user
+    const id = req.user.id
 
     try
     {
