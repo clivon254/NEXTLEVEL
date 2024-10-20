@@ -102,7 +102,8 @@ export const updateProduct = async (req,res,next) => {
                    wholesalePricePrice:req.body.wholesalePricePrice,
                    tag1:req.body.tag1,
                    tag2:req.body.tag2,
-                   sizes:req.body.sizes
+                   sizes:req.body.sizes,
+                   images:req.body.images
                 }
             },
             {new:true}
