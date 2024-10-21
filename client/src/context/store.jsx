@@ -28,6 +28,11 @@ export default function StoreContextProvider(props){
    
   const [cartItems, setCartItems] = useState([])
   
+  const [totalAmount, setTotalAmount] = useState(null)
+
+  const [cartData, setCartData] = useState([])
+
+
 
   // fetchProducts
   const fetchProducts  = async () => {
@@ -73,33 +78,45 @@ export default function StoreContextProvider(props){
   // totalCart
   const getTotalCartAmount = () => {
 
-    
-
     try
     {
        let totalAmount = 0 ;
 
-        for(const item in cartItems)
-        {
-          if(cartItems[item] > 0)
+
+        for(const items in cartItems)
           {
-             let itemInfo = products.find((product) => product._id === item)
+            for(const item in cartItems[items])
+            {
+              try
+              {
+                if(cartItems[items][item] > 0)
+                {
 
-             if(itemInfo)
-             {
-              totalAmount += itemInfo.discountPrice * cartItems[item]
-             }
+                  let itemInfo = products.find((product) => product._id === items)
+
+                  if(itemInfo)
+                  {
+                    totalAmount += itemInfo.discountPrice * cartItems[items][item]
+                  }
+                }
+              }
+              catch(error)
+              {
+                console.log(error.message)
+              }
+            }
           }
-
-        }
 
         return totalAmount
 
     }
     catch(error)
-    {}
+    {
+      console.log(error)
+    }
 
   }
+
 
  // fetchCartItems
  const fetchCartItems = async (token) => {
@@ -152,8 +169,12 @@ export default function StoreContextProvider(props){
     return totalCount
 
   }
- 
-  console.log(cartItems)
+
+  // updateQuantity
+  const updateQuantity = async (itemId,size,quantity) => {
+
+
+  }
 
 
   useEffect(() => {
@@ -171,21 +192,51 @@ export default function StoreContextProvider(props){
 
   },[])
 
+
+  useEffect(() => {
+     
+    const tempData = []
+
+    for(const items in cartItems)
+    {
+
+      for(const item in cartItems[items])
+      {
+
+        if(cartItems[items][item] > 0)
+        {
+          tempData.push({
+            _id:items,
+            size:item,
+            quantity:cartItems[items][item]
+          })
+        }
+
+      }
+
+    }
+
+    setCartData(tempData)
+
+  },[cartItems])
+
+  
+
+
   const contextValue = {
     url,
-    open,
-    setOpen,
-    token,
-    setToken,
-    products,
-    setProducts,
-    productsError,
-    setproductsError,
-    productsLoading,
-    setProductsLoading,
+    open,setOpen,
+    token,setToken,
+    products,setProducts,
+    productsError,setproductsError,
+    productsLoading,setProductsLoading,
     fetchProducts,
     getTotalCartAmount,
-    getCartCount
+    getCartCount,
+    cartItems,setCartItems,
+    getTotalCartAmount,
+    cartData,setCartData,
+    totalAmount,setTotalAmount
   }
  
 
