@@ -15,7 +15,9 @@ const orderSchema = new mongoose.Schema({
 
     payment:{type:Boolean, default:false},
 
-    paymentMethod:{type:String, required:true}
+    paymentmethod:{type:String, required:true},
+
+    status:{type:String ,default:"Order Placed"}
 },
     {
         timestamps:true

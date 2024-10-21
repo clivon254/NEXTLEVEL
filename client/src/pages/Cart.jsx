@@ -8,6 +8,8 @@ import { Table, TableRow } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import { MdArrowCircleRight, MdArrowRight, MdArrowRightAlt } from 'react-icons/md'
 
+
+
 export default function Cart() {
 
     const {getTotalCartAmount,cartData,products} = useContext(StoreContext)
@@ -142,10 +144,10 @@ export default function Cart() {
               </div>
 
               {/* cartTotals */}
-              <div className="w-full space-y-7">
+              <div className="w-full space-y-7 md:flex gap-x-15">
                   
                 {/* totals */}
-                <div className="">
+                <div className="w-full md:w-[60%]">
 
                     <Table>
 
@@ -176,7 +178,7 @@ export default function Cart() {
                           <Table.Cell colSpan={2}>
                             
                             <button 
-                              className="w-full btn2 rounded-xl"
+                              className="w-full btn rounded-xl"
                               onClick={() => navigate('/checkout')}
                             >
                               PROCEED TO CHECKOUT
@@ -193,7 +195,7 @@ export default function Cart() {
                 </div>
 
                 {/* coupons */}
-                <div className="space-y-3">
+                <div className="space-y-3 w-full md:w-[60%]">
 
                   <h3 className="title2">Apply coupon</h3>
 

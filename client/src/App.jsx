@@ -24,6 +24,7 @@ import Search from './pages/search'
 import Order from './pages/Order'
 import {Toaster} from "sonner"
 import ForgotPassword from './pages/ForgotPassword'
+import Verify from './pages/Verify'
 
 
 export default function App() {
@@ -61,6 +62,8 @@ export default function App() {
             <Route path="/forgot-password" element={<ForgotPassword/>}/>
 
             <Route path="/search" element={<Search/>}/>
+
+            <Route path="/verify" element={<Verify/>}/>
 
             <Route element={<OnlyAdmin/>}>
 

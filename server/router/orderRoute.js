@@ -2,7 +2,7 @@
 
 
 import express from "express";
-import { adminOrders, callback, mpesaPayment, stripePayment, updateStatus, userOrders, verifyOrder } from "../controller/orderController.js";
+import { adminOrders, afterDelivery, callback, mpesaPayment, stripePayment, updateStatus, userOrders, verifyOrder } from "../controller/orderController.js";
 import { generateToken, verifyToken } from "../utils/verify.js";
 
 
@@ -19,6 +19,9 @@ orderRouter.post('/mpesa', generateToken,verifyToken, mpesaPayment)
 
 
 orderRouter.post('/callback', verifyToken, callback)
+
+
+orderRouter.post('/COD',verifyToken, afterDelivery)
 
 
 orderRouter.post('/admin-orders', verifyToken, adminOrders)

@@ -13,10 +13,10 @@ import Product from "../model/productModel.js"
 const stripe = new Stripe(process.env.STRIPE_SECRETE_KEY)
 
 
-
+// stripe
 export const stripePayment = async (req,res,next) => {
 
-    const frontend_url = "http://localhost:5174"
+    const frontend_url = "http://localhost:5173"
 
     const {items,address,paymentmethod,amount} = req.body
 
@@ -104,7 +104,7 @@ export const verifyOrder = async (req,res,next) => {
 
 }
 
-
+// mpesa
 export const mpesaPayment = async (req,res,next) => {
 
     const {items,address,paymentmethod,amount} = req.body
@@ -218,7 +218,7 @@ export const callback = async (req,res,next) => {
 
 }
 
-
+// after delivery
 export const afterDelivery = async (req,res,next) => {
 
     const {items,address,paymentmethod,amount} = req.body
@@ -259,6 +259,7 @@ export const afterDelivery = async (req,res,next) => {
 }
 
 
+// orders
 export const adminOrders = async (req,res,next) => {
 
     try
