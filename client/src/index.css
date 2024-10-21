@@ -58,6 +58,11 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text{
     @apply text-2xl md:text-3xl lg:text-4xl font-serif
 }
 
+.title2
+{
+    @apply text-xl md:text-2xl font-serif
+}
+
 
 .size
 {

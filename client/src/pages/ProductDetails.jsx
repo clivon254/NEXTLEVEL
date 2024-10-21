@@ -3,17 +3,24 @@
 import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { StoreContext } from '../context/store'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Rating from "react-rating"
 import { MdStar } from 'react-icons/md'
 import { Alert, TabItem } from 'flowbite-react'
 import { toast } from 'sonner'
+import Reveiw from '../components/Reveiw'
+import Reveiws from '../components/Reveiws'
+import SlideProducts from '../components/SlideProducts'
+import { current } from '@reduxjs/toolkit'
+import { useSelector } from 'react-redux'
 
 
 
 export default function ProductDetails() {
   
-  const {url,token} = useContext(StoreContext)
+  const {url,token,products} = useContext(StoreContext)
+
+  const {currentUser} = useSelector(state => state.user)
 
   const [product, setProduct] = useState({})
 
@@ -30,6 +37,8 @@ export default function ProductDetails() {
   const [sizes, setSizes] = useState(null)
 
   const [alert, setAlert] = useState(null)
+
+  const navigate = useNavigate()
 
   // addSize
   const addsize = (size) => {
@@ -113,6 +122,11 @@ export default function ProductDetails() {
 
     setAlert(null)
 
+    if(!currentUser)
+    {
+      navigate('/sign-in')
+    }
+
     if(sizes === null)
     {
         return setAlert("please choose a size")
@@ -155,7 +169,6 @@ export default function ProductDetails() {
   },[productId])
 
 
-
   return (
 
    <section className="section">
@@ -165,7 +178,7 @@ export default function ProductDetails() {
           <div className="w-full">
             
             {/* upper section */}
-            <div className="w-full grid grid-cols-1 lg:grid-cols-3">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-5">
 
               {/* right */}
               <div className="w-full flex flex-col-reverse md:flex-row gap-y-4 lg:col-span-2">
@@ -216,6 +229,7 @@ export default function ProductDetails() {
                         initialRating={product?.rating}
                         emptySymbol={<MdStar className="text-gray-300"/>}
                         fullSymbol={<MdStar className="text-amber-300"/>}
+                        readonly
                       />
 
                       <span className="">
@@ -292,8 +306,26 @@ export default function ProductDetails() {
 
             </div>
 
+            <hr className="my-10 "/>
+
             {/* lower section */}
-            <div className=""></div>
+            <div className="">
+                  
+                  <Reveiws
+                    reveiws={reveiws}
+                    productId={productId}
+                  />
+
+                  {/* related products */}
+                  <div className="space-y-4">
+
+                    <h2 className="title2">Related products</h2>
+
+                    <SlideProducts products={products}/>
+
+                  </div>
+
+            </div>
 
           </div>
 
