@@ -6,7 +6,7 @@ import User from "../model/userModel.js"
 import Order from "../model/orderModel.js"
 import Payment from "../model/paymentModel.js"
 import Product from "../model/productModel.js"
-
+import axios from "axios"
 
 
 
@@ -34,7 +34,7 @@ export const stripePayment = async (req,res,next) => {
 
         await User.findByIdAndUpdate(userId, {cartData:{}})
 
-        line_items = items.map((item) => (
+        const line_items = items.map((item) => (
             {
                 price_data:{
                     currency:'usd',
@@ -61,8 +61,8 @@ export const stripePayment = async (req,res,next) => {
         const session = await stripe.checkout.sessions.create({
             line_items:line_items,
             mode:"payment",
-            success_url:`${frontend_url}/verify?success=&orderId=${newOrder._id}`,
-            success_url:`${frontend_url}/verify?false=&orderId=${newOrder._id}`,
+            success_url:`${frontend_url}/verify?success=true&orderId=${newOrder._id}`,
+            cancel_url:`${frontend_url}/verify?success=false&orderId=${newOrder._id}`,
         })
 
         await newOrder.save()
@@ -120,6 +120,7 @@ export const mpesaPayment = async (req,res,next) => {
             address,
             paymentmethod,
             amount,
+            userId
         })
 
         await User.findByIdAndUpdate(userId, {cartData:{}})
@@ -134,7 +135,7 @@ export const mpesaPayment = async (req,res,next) => {
             ("0" + date.getDate()).slice(-2) +
             ("0" + date.getHours()).slice(-2) +
             ("0" + date.getMinutes()).slice(-2) +
-            ("0" + date.Seconds()).slice(-2) 
+            ("0" + date.getSeconds()).slice(-2) 
     
         const shortcode = process.env.PAYBILL
 
@@ -153,7 +154,7 @@ export const mpesaPayment = async (req,res,next) => {
             "PartyA":`254${phone}`,    
             "PartyB":shortcode,    
             "PhoneNumber":`254${phone}`,    
-            "CallBackURL": "https://mydomain.com/pa/api/order/callback",    
+            "CallBackURL": "https://899f-41-90-175-55.ngrok-free.app/api/order/callback",    
             "AccountReference":"NEXT LEVEL CLOTHING",    
             "TransactionDesc":"Test"
         },
@@ -235,15 +236,6 @@ export const afterDelivery = async (req,res,next) => {
             userId
         })
 
-        for(const item in items)
-        {
-            const product = await Product.findById(item._id)
-
-            if(product)
-            {
-                await Product.findByIdAndUpdate(product._id ,{instock: product.instock-1})
-            }
-        }
 
         await newOrder.save()
 

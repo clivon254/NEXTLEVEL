@@ -236,7 +236,8 @@ export default function StoreContextProvider(props){
     cartItems,setCartItems,
     getTotalCartAmount,
     cartData,setCartData,
-    totalAmount,setTotalAmount
+    totalAmount,setTotalAmount,
+    fetchCartItems,
   }
  
 

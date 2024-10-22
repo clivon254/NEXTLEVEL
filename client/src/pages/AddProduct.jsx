@@ -261,35 +261,41 @@ export default function AddProduct() {
           </select>
 
           {/* sizes */}
-          <div className="flex items-center gap-x-2">
+          <div className="space-y-2">
 
-            <div onClick={() => addSizes("S")}>
+            <p className="font-semibold text-sm">select the availble sizes</p>
 
-              <p className={`size ${formData.sizes?.includes("S") ? "size-active":""}`}> S</p>
+            <div className="flex items-center gap-x-2">
 
-            </div>
+              <div onClick={() => addSizes("S")}>
 
-            <div onClick={() => addSizes("M")}>
+                <p className={`size ${formData.sizes?.includes("S") ? "size-active":""}`}> S</p>
 
-              <p className={`size ${formData.sizes?.includes("M") ? "size-active":""}`}> M</p>
+              </div>
 
-            </div>
+              <div onClick={() => addSizes("M")}>
 
-            <div onClick={() => addSizes("L")}>
+                <p className={`size ${formData.sizes?.includes("M") ? "size-active":""}`}> M</p>
 
-              <p className={`size ${formData.sizes?.includes("L") ? "size-active":""}`}> L</p>
+              </div>
 
-            </div>
+              <div onClick={() => addSizes("L")}>
 
-            <div onClick={() => addSizes("XL")}>
+                <p className={`size ${formData.sizes?.includes("L") ? "size-active":""}`}> L</p>
 
-              <p className={`size ${formData.sizes?.includes("XL") ? "size-active":""}`}> XL</p>
+              </div>
 
-            </div>
+              <div onClick={() => addSizes("XL")}>
 
-            <div onClick={() => addSizes("XXL")}>
+                <p className={`size ${formData.sizes?.includes("XL") ? "size-active":""}`}> XL</p>
 
-              <p className={`size ${formData.sizes?.includes("XXL") ? "border-2 border-black  dark:border-secondaryDark":""}`}> XXL</p>
+              </div>
+
+              <div onClick={() => addSizes("XXL")}>
+
+                <p className={`size ${formData.sizes?.includes("XXL") ? "border-2 border-black  dark:border-secondaryDark":""}`}> XXL</p>
+
+              </div>
 
             </div>
 

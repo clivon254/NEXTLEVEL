@@ -14,7 +14,7 @@ import { toast } from 'sonner'
 
 export default function CheckOut() {
  
-  const {token,url,cartData,products,totalAmount, getTotalCartAmount,cartItems} = useContext(StoreContext)
+  const {token,url,cartData,products,totalAmount, getTotalCartAmount,cartItems,fetchCartItems} = useContext(StoreContext)
 
   const {currentUser} = useSelector(state => state.user)
 
@@ -33,6 +33,10 @@ export default function CheckOut() {
   const navigate = useNavigate()
 
   const [shipping, setShipping] = useState([
+    {
+      place:"Self pick up",
+      value:0
+    },
     {
       place:"Nairobi",
       value:300
@@ -140,6 +144,14 @@ export default function CheckOut() {
               const {session_url} = res.data
 
               window.location.replace(session_url)
+
+              fetchCartItems(token)
+
+              setData({})
+
+              setPaymentmethod(null)
+
+              setShippingMethod(null)
             }
             else
             {
@@ -165,6 +177,14 @@ export default function CheckOut() {
                 setLoading(false)
 
                 toast.success("prompt has been sent to your phone")
+
+                fetchCartItems(token)
+
+                setData({})
+
+                setPaymentmethod(null)
+
+                setShippingMethod(null)
             }
             else
             {
@@ -190,7 +210,16 @@ export default function CheckOut() {
 
               toast.success("order completed successfully")
 
-              navigate('/orders')
+              navigate('/order')
+
+              fetchCartItems(token)
+
+              setData({})
+
+              setPaymentmethod(null)
+
+              setShippingMethod(null)
+
             }
             else
             {
@@ -212,7 +241,11 @@ export default function CheckOut() {
    
   }
 
+  console.log(data)
 
+  console.log(paymentmethod)
+
+  console.log(shippingMethod)
   
 
   return (

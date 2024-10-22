@@ -18,7 +18,7 @@ import { useSelector } from 'react-redux'
 
 export default function ProductDetails() {
   
-  const {url,token,products} = useContext(StoreContext)
+  const {url,token,products,fetchCartItems} = useContext(StoreContext)
 
   const {currentUser} = useSelector(state => state.user)
 
@@ -144,6 +144,10 @@ export default function ProductDetails() {
       if(res.data.success)
       {
         toast.success(res.data.message)
+
+        fetchCartItems(token)
+
+        setSizes(null)
 
       }
       else

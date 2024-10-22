@@ -27,16 +27,20 @@ export default function Verify() {
 
         if(response.data.success)
         {
-            navigate("/orders")
+            navigate("/order")
         }
         else
         {
             navigate('/')
+
+            console.log("stripe success is false")
         }
      }
      catch(error)
      {
         console.log(error.message)
+        
+        navigate('/')
      }
 
   }   
@@ -49,9 +53,9 @@ export default function Verify() {
 
   return (
 
-   <div className="min-h-[80vh] grid">
+   <div className="min-h-[40vh] grid place-content-center">
 
-    <div className="place-content-center">
+    <div className="">
 
         <span className="Loading"/>
         
