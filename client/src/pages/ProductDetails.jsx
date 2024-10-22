@@ -13,6 +13,11 @@ import Reveiws from '../components/Reveiws'
 import SlideProducts from '../components/SlideProducts'
 import { current } from '@reduxjs/toolkit'
 import { useSelector } from 'react-redux'
+// swiper components
+import {Swiper, SwiperSlide} from "swiper/react"
+// Swiper styles
+import "swiper/css"
+import {Autoplay,Navigation} from "swiper/modules"
 
 
 
@@ -37,6 +42,7 @@ export default function ProductDetails() {
   const [sizes, setSizes] = useState(null)
 
   const [alert, setAlert] = useState(null)
+
 
   const navigate = useNavigate()
 
@@ -187,8 +193,8 @@ export default function ProductDetails() {
               {/* right */}
               <div className="w-full flex flex-col-reverse md:flex-row gap-y-4 lg:col-span-2">
 
-                {/* images */}
-                <div className="w-full md:w-[20%] flex items-center md:justify-start justify-center md:flex-col gap-x-3 gap-y-4 p-2">
+                {/* images lg*/}
+                <div className="w-[20%] hidden md:flex  md:justify-start justify-center flex-col  gap-y-4 p-2">
 
                   {product?.images?.map((url,index) => (
 
@@ -201,6 +207,61 @@ export default function ProductDetails() {
                     />
 
                   ))}
+                </div>
+
+                <div className="w-full md:hidden ">
+
+                  <Swiper
+                    className="mySwiper"
+                    spaceBetween={10}
+                    slidesPerView={4}
+                    // loop={true}
+                    autoPlay={
+                    {
+                        delay:2000,
+                        disableOnInteraction:false
+                    }
+                    }
+                    modules={[Autoplay,Navigation]}
+                    breakpoints={{
+                        0: {
+                        slidesPerView: 4,
+                        spaceBetween:10
+                        },
+                        640: {
+                        slidesPerView:4 ,
+                        spaceBetween: 10,
+                        },
+                        768: {
+                        slidesPerView: 4,
+                        spaceBetween: 10,
+                        },
+                        1024: {
+                        slidesPerView: 5,
+                        spaceBetween: 10,
+                        },
+                    }} 
+                    navigation={{
+                    prevEl:'.prev',
+                    nextEl:'.next'
+                    }}
+                  >
+                          
+
+                      {product?.images?.map((url,index) => (
+                        <SwiperSlide key={index}>
+                          <img 
+                            key={index}
+                            src={url}
+                            alt="" 
+                            className={`${image === url ? "image-thumb-active":"image-thumb"}`}
+                            onClick={() => setImage(url)}
+                          />
+                        </SwiperSlide>
+                      ))}
+
+                  </Swiper>
+
                 </div>
 
                 {/* main Image */} 

@@ -28,7 +28,7 @@ export default function SlideProducts({products}) {
                 <Swiper
                     className="mySwiper"
                     spaceBetween={10}
-                    slidesPerView={2}
+                    slidesPerView={4}
                     // loop={true}
                     autoPlay={
                     {
