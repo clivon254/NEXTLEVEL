@@ -24,13 +24,13 @@ orderRouter.post('/callback', verifyToken, callback)
 orderRouter.post('/COD',verifyToken, afterDelivery)
 
 
-orderRouter.post('/admin-orders', verifyToken, adminOrders)
+orderRouter.get('/admin-orders', verifyToken, adminOrders)
 
 
-orderRouter.post('/user-orders', verifyToken, userOrders)
+orderRouter.get('/user-orders', verifyToken, userOrders)
 
 
-orderRouter.put('/update-status', verifyToken, updateStatus)
+orderRouter.put('/update-status', updateStatus)
 
 
 

@@ -12,7 +12,7 @@ export default function ProductCard({product}) {
 
   return (
 
-    <div className="w-full flex flex-col gap-y-1 rounded-t-xl">
+    <div className="w-full flex flex-col gap-y-1 rounded-t-xl shadow">
 
         {/* image */}
         <div className="w-full h-[150px]">
@@ -40,12 +40,6 @@ export default function ProductCard({product}) {
                 <span className="text-[10px] text-red-300 line-through">{product?.regularPrice?.toLocaleString('en-Kenya', { style: 'currency', currency: 'KES' })}</span>
 
                 <span className="font-semibold text-sm">{product?.discountPrice?.toLocaleString('en-Kenya', { style: 'currency', currency: 'KES' })}</span>   
-
-            </div>
-
-            <div className="flex items-center justify-between">
-
-                <span className="text-[9px] bg-secondaryLight text-bgLight dark:bg-secondaryDark px-2 rounded-full">{product.tag2}</span>
 
             </div>
 

@@ -91,7 +91,7 @@ export default function Home() {
             
             <div className="h-[50%] bg-primaryLight dark:bg-primaryDark rounded-2xl p-3">
               
-              <h2 className="text-2xl font-black text-textDark dark:text-slate-100 flex">
+              <h2 className="text-2xl font-black text-textDark dark:text-slate-700 flex">
                 Get 15% of every purchase with us
                
               </h2>
@@ -145,10 +145,28 @@ export default function Home() {
 
     </article>
 
-    {/* products */}
+    {/* best selling products */}
     <article className="section space-y-5 ">
        
        <h2 className="title2">Best selling products</h2>
+
+      <SlideProducts products ={products} />
+
+    </article>
+    
+    {/* latest products */}
+    <article className="section space-y-5 ">
+       
+       <h2 className="title2">Latest products </h2>
+
+      <SlideProducts products ={products} />
+
+    </article>
+
+    {/* featured products */}
+    <article className="section space-y-5 ">
+       
+       <h2 className="title2">Featured products</h2>
 
       <SlideProducts products ={products} />
 

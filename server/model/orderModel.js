@@ -13,6 +13,8 @@ const orderSchema = new mongoose.Schema({
 
     date:{type:String, default:Date.now()},
 
+    amount:{type:Number, required:true},
+
     payment:{type:Boolean, default:false},
 
     paymentmethod:{type:String, required:true},
