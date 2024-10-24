@@ -1,7 +1,7 @@
 
 
 import express from "express"
-import { createProduct, deleteProduct, getProduct, getProducts, updateProduct } from "../controller/productController.js"
+import { createProduct, deleteProduct, getProduct, getProducts, stats, updateProduct } from "../controller/productController.js"
 import { verifyToken } from "../utils/verify.js"
 
 
@@ -21,6 +21,9 @@ productRouter.put('/update-product/:productId',verifyToken, updateProduct)
 
 
 productRouter.delete('/delete-product/:productId',verifyToken, deleteProduct)
+
+
+productRouter.post('/stats',stats)
 
 
 

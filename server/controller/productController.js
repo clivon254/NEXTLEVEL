@@ -1,5 +1,7 @@
 
+import Order from "../model/orderModel.js"
 import Product from "../model/productModel.js"
+import User from "../model/userModel.js"
 import { errorHandler } from "../utils/error.js"
 
 
@@ -36,7 +38,9 @@ export const getProducts = async (req,res,next) => {
 
     try
     {
-        const products = await Product.find({})
+        const sortDirection = req.query.order === "asc" ? 1 : -1
+
+        const products = await Product.find({}).sort({createdAt:sortDirection})
 
         res.status(200).json({success:true, products})
     }
@@ -149,3 +153,65 @@ export const deleteProduct = async (req,res,next) => {
 
 }
 
+export const stats = async (req,res,next) => {
+
+    try
+    {
+        const {query} = req.query
+
+        const numofDays = Number(query) || 28
+
+        const currentDate = new Date()
+
+        const startDate = new Date()
+
+        startDate.setDate(currentDate.getDate() - numofDays)
+
+        const totalProduct = await Product.find({}).countDocuments()
+        
+        const totalOrders = await Order.find({
+           status:"Order Placed"
+        }).countDocuments()
+
+        const productOutStock = await Product.find({
+            instock:0
+        }).countDocuments()
+
+        const totalUsers = await User.find({}).countDocuments()
+
+        const orderStats = await Order.aggregate([
+            {
+                $match:{
+                    createdAt:{$gte:startDate , $lte:currentDate}
+                }
+            },
+            {
+                $group:{
+                    _id:{
+                        $dateToString:{format:'%Y-%m-%d',date:"$createdAt"}
+                    },
+                    Total:{$sum:1}
+                }
+            },
+            {$sort:{_id:1}}
+        ])
+
+        const last5Products = await Product.find({}).limit(5).sort({_id:-1})
+
+        res.status(200).json({
+            success:true,
+            totalProduct,
+            totalOrders,
+            productOutStock,
+            totalUsers,
+            orderStats,
+            last5Products
+        })
+
+    }
+    catch(error)
+    {
+        next(error)
+    }
+
+}
