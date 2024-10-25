@@ -84,9 +84,9 @@ export default function Cart() {
 
                                 <div className="flex flex-col  items-start gap-5 mt-2">
 
-                                  <p className="">{productData?.discountPrice?.toLocaleString('en-Kenya', { style: 'currency', currency: 'KES' })}</p>
+                                  <span className="">{productData?.discountPrice?.toLocaleString('en-Kenya', { style: 'currency', currency: 'KES' })}</span>
 
-                                  <p className="font-bold">Size : <span className="size size-active">{item?.size}</span></p>
+                                  <span className="font-bold ">Size : <span className="size size-active">{item?.size}</span></span>
 
                                 </div>
 
@@ -144,7 +144,7 @@ export default function Cart() {
               </div>
 
               {/* cartTotals */}
-              <div className="w-full space-y-7 md:flex gap-x-15">
+              <div className="w-full space-y-7 md:flex flex-row-reverse gap-x-15">
                   
                 {/* totals */}
                 <div className="w-full md:w-[60%]">

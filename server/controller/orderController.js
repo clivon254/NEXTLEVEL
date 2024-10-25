@@ -154,8 +154,8 @@ export const mpesaPayment = async (req,res,next) => {
             "PartyA":`254${phone}`,    
             "PartyB":shortcode,    
             "PhoneNumber":`254${phone}`,    
-            "CallBackURL": "https://899f-41-90-175-55.ngrok-free.app/api/order/callback",    
-            "AccountReference":"NEXT LEVEL CLOTHING",    
+            "CallBackURL": "https://5ecf-41-90-175-55.ngrok-free.app/api/order/callback",    
+            "AccountReference":"WEWE KIJANA YA MISATI TOKEA  ACHA UFALA,UMBWA WEWE KUBMAVU ZAKO",    
             "TransactionDesc":"Test"
         },
         {
@@ -166,6 +166,8 @@ export const mpesaPayment = async (req,res,next) => {
         .then((response) => {
 
             let resData = response.resData
+
+            console.log(resData)
 
             res.status(200).json({success:true , resData})
 
@@ -206,6 +208,8 @@ export const callback = async (req,res,next) => {
             amount,
             trnx_id
         })
+
+        console.log(callbackData.Body.stkCallback.CallbackMetadata)
 
         await payment.save()
 

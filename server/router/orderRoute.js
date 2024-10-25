@@ -18,7 +18,7 @@ orderRouter.post('/verify-order',verifyOrder)
 orderRouter.post('/mpesa', generateToken,verifyToken, mpesaPayment)
 
 
-orderRouter.post('/callback', verifyToken, callback)
+orderRouter.post('/callback', callback)
 
 
 orderRouter.post('/COD',verifyToken, afterDelivery)

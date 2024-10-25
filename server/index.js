@@ -21,7 +21,9 @@ const app = express()
 const  PORT = process.env.PORT
 
 
-app.use(cors())
+app.use(cors(
+    {origin:['https://5ecf-41-90-175-55.ngrok-free.app','http://localhost:5173']}
+))
 
 app.use(express.json())
 
