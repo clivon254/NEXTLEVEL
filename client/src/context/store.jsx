@@ -67,7 +67,7 @@ export default function StoreContextProvider(props){
     {
       setProductsLoading(false)
 
-      setProductsLoading(false)
+      setproductsError(true)
 
       console.log(error.message)
     }
@@ -191,7 +191,6 @@ export default function StoreContextProvider(props){
 
 
   },[])
-
 
   useEffect(() => {
      

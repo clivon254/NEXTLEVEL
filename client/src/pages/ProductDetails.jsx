@@ -18,6 +18,7 @@ import {Swiper, SwiperSlide} from "swiper/react"
 // Swiper styles
 import "swiper/css"
 import {Autoplay,Navigation} from "swiper/modules"
+import Error from '../components/Error'
 
 
 
@@ -42,6 +43,8 @@ export default function ProductDetails() {
   const [sizes, setSizes] = useState(null)
 
   const [alert, setAlert] = useState(null)
+
+  const [img, setImg] = useState([{},{},{},{}])
 
 
   const navigate = useNavigate()
@@ -398,13 +401,175 @@ export default function ProductDetails() {
 
       {Loading && !error && (
           
-          <div className="flex items-center justify-center">
+          <div className="w-full animate-pulse">
+            
+            {/* upper section */}
+            <div className="w-full grid grid-cols-1 lg:grid-cols-3 gap-x-10 gap-y-5">
 
-            <span className="flex">
+              {/* right */}
+              <div className="w-full flex flex-col-reverse md:flex-row gap-y-4 lg:col-span-2">
 
-              <span className="Loading"/> Loading...
+                {/* images lg*/}
+                <div className="w-full md:w-[20%] flex  md:flex-col md:justify-start justify-center  gap-x-2 gap-y-4 p-2">
 
-            </span>
+                  {img.map((url,index) => (
+
+                    <div 
+                      key={index}
+                      alt="" 
+                      className="w-24 h-24 bg-gray-300 dark:bg-green-600 rounded-xl"
+                    />
+
+                  ))}
+                </div>
+
+                {/* main Image */} 
+                <div className="w-full md:w-[80%] h-[60vh] p-2 mx-auto rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+              </div>
+
+              {/* left */}
+              <div className="p-2 space-y-5">
+
+                  {/* name */}
+                  <div className="h-4 w-60 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                  {/* ratings */}
+                  <div className="flex items-center gap-4">
+
+                      <Rating 
+                        initialRating={product?.rating}
+                        emptySymbol={<MdStar className="text-gray-300"/>}
+                        fullSymbol={<MdStar className="text-amber-300"/>}
+                        readonly
+                      />
+
+                  </div>
+
+                  {/* price */}
+                  <div className="h-4 w-40 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      
+                  {/* description */}
+                  <div  className="h-24 w-72 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                  {/* size */}
+                  <div className="space-y-2">
+
+                      <div className="h-2 w-20 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="flex items-center gap-x-3">
+
+                        <span className="h-8 w-8 block rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                        <span className="h-8 w-8 block rounded-xl bg-gray-300 dark:bg-green-600"/>
+                        
+                        <span className="h-8 w-8 block rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                        <span className="h-8 w-8 block rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                        <span className="h-8 w-8 block rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                      </div>
+
+                  </div>
+
+                  {/* addToCart */}
+                  <div className="h-10 w-40 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                  {alert && (
+
+                    <Alert color="failure">{alert}</Alert>
+
+                  )}
+
+                  <hr />
+                    
+                  <div className="flex flex-col gap-y-3 text-gray-500">
+
+                      <div className="h-2 w-48 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-2 w-48 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-2 w-48 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                  </div>
+                    
+              </div>
+
+            </div>
+
+            <hr className="my-10 "/>
+
+            {/* lower section */}
+            <div className="space-y-10">
+
+              <div className="space-y-7">
+                  
+                <div className=" h-4 w-60 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                <div className="flex flex-col gap-y-3">
+                  
+                    {/* reveiw */}
+                    <div className="flex item-start gap-x-3 ">
+
+                      <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-20 w-60 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                    </div>
+
+                    {/* reveiw */}
+                    <div className="flex item-start gap-x-3 ">
+
+                      <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-20 w-60 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                    </div>
+
+
+                    {/* reveiw */}
+                    <div className="flex item-start gap-x-3 ">
+
+                      <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-20 w-60 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                    </div>
+
+                    {/* reveiw */}
+                    <div className="flex item-start gap-x-3 ">
+
+                      <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-20 w-60 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                    </div>
+
+                    {/* reveiw */}
+                    <div className="flex item-start gap-x-3 ">
+
+                      <div className="h-10 w-10 rounded-full bg-gray-300 dark:bg-green-600"/>
+
+                      <div className="h-20 w-60 rounded-xl bg-gray-300 dark:bg-green-600"/>
+
+                    </div>
+
+                </div>
+
+             </div>
+
+              {/* related products */}
+              <div className="space-y-4">
+
+                <h2 className="title2">Related products</h2>
+
+                <SlideProducts products={products}/>
+
+              </div>
+
+            </div>
 
           </div>
           
@@ -412,7 +577,7 @@ export default function ProductDetails() {
 
       {!Loading && error && (
           
-          <div className=""></div>
+        <Error  fetch={fetchProduct}/>
           
       )}
 

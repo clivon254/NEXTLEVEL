@@ -9,6 +9,7 @@ import { StoreContext } from '../context/store'
 import { Table } from 'flowbite-react'
 import {Link} from "react-router-dom"
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts"
+import Error from '../components/Error'
 
 
 export default function Dashboard() {
@@ -44,7 +45,9 @@ export default function Dashboard() {
 
   const [error,setError] = useState(false)
 
-  const [loader,setLoader] = useState([{},{},{},{}])
+  const [loader,setLoader] = useState([{},{},{},{}])  
+
+  const [load,setLoad] = useState([{},{},{},{},{}])
   
   // fetchStat
   const fetchStats = async () => {
@@ -52,6 +55,8 @@ export default function Dashboard() {
     try
     {
       setLoading(true)
+
+      setError(false)
 
       const res = await axios.post(url + "/api/product/stats")
 
@@ -70,6 +75,8 @@ export default function Dashboard() {
       console.log(error.message)
 
       setLoading(false)
+
+      setError(true)
     }
 
   }
@@ -81,217 +88,390 @@ export default function Dashboard() {
   },[])
 
   return (
+   
+    <>
 
-    <section className="section space-y-20">
+      {loading && (
 
-      <h2 className="title ">Dashboard</h2>
+        <section className="section space-y-20 animate-pulse">
 
-      {/* stats */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <span className="block h-4 w-60 bg-gray-300 dark:bg-green-600 rounded-full"/>
 
-        {data.map((stat) => (
+          {/* stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-          <div className="border p-2 shaodow-sm space-y-2" title={stat.title}>
+            {load.map((stat) => (
 
-            <div className="flex items-center justify-between text-sm">
+              <div className="border p-4 shaodow-sm space-y-3 rounded-xl border-gray-300 dark:border-gray-500" >
 
-              <span className="">{stat.title}</span>
+                <div className="flex items-center justify-between text-sm">
 
-              {stat.icon}
-            </div>
+                    <span className="block h-4 w-32 bg-gray-300 dark:bg-green-600 rounded-full"/>
 
-            <div className="">
+                    <span className="block h-6 w-6 bg-gray-300 dark:bg-green-600 rounded-full"/>
 
-              <span className="text-2xl 2xl:text-4xl font-serif">{stat.value}</span>
+                </div>
 
-            </div>
+                <div className="">
 
-            <span className="block text-xs">
-              compare to previous month
-            </span>
+                  <span className="block h-6 w-16 bg-gray-300 dark:bg-green-600 rounded-full"/>
+
+                </div>
+
+                <span className="block h-4 w-32 bg-gray-300 dark:bg-green-600 rounded-full"/>
+
+              </div>
+
+            ))}
 
           </div>
 
-        ))}
+          {/* last5products */}
+          <div className="space-y-5">
 
-      </div>
+            <span className="block h-4 w-60 bg-gray-300 dark:bg-green-600 rounded-full"/>
 
-      {/* last5products */}
-      <div className="">
+            <div className="max-w-3xl mx-auto table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+                  
+              <Table>
+                
+                <Table.Body className="divide-y font-bold uppercase">
 
-        <h2 className="title2 ">Last 5 products</h2>
+                  <Table.Row >
 
-        <div className="max-w-3xl mx-auto table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
-              {stats?.last5Products?.length > 0 ? 
-                (
-                  <Table>
+                    <Table.Cell>Date updated</Table.Cell>
+
+                    <Table.Cell>Image</Table.Cell>
+
+                    <Table.Cell>title</Table.Cell>
+
+                    <Table.Cell>tag1</Table.Cell>
+
+                    <Table.Cell>tag2</Table.Cell>
+
+                    <Table.Cell>Action</Table.Cell>
+
+                  </Table.Row>
+
+                </Table.Body>
+
+                {loader?.map((product,index) => (
+
+                  <Table.Body>
+
+                    <Table.Row>    
+
+                      <Table.Cell>
+
+                        <span className="block h-4 w-20 bg-gray-300 dark:bg-green-600 rounded-full"/>
+
+                      </Table.Cell>
+
+                      <Table.Cell>
+
+                          <span className="block h-12 w-24 bg-gray-300 dark:bg-green-600 rounded-xl"/>
+
+                      </Table.Cell>
+
+                      <Table.Cell>
+
+                          <span className="block h-4 w-20 bg-gray-300 dark:bg-green-600 rounded-full"/>
+                      
+                      </Table.Cell>
+
+                      <Table.Cell>
+                          <span className="block h-4 w-16 bg-gray-300 dark:bg-green-600 rounded-full"/>
+                      </Table.Cell>
+
+                      <Table.Cell>
+                          <span className="block h-4 w-16 bg-gray-300 dark:bg-green-600 rounded-full"/>
+                      </Table.Cell>
+
+                      <Table.Cell>
+
+                        <div className="flex item-center gap-x-2">
+
+                          <span className="block h-6 w-6 bg-gray-300 dark:bg-green-600 rounded-full"/>
+
+                          <span className="block h-6 w-6 bg-gray-300 dark:bg-green-600 rounded-full"/>
+
+                          <span className="block h-6 w-6 bg-gray-300 dark:bg-green-600 rounded-full"/>
+
+                        </div>
+
+                      </Table.Cell>
+
+                    </Table.Row>
                     
-                    <Table.Body className="divide-y font-bold uppercase">
+                  </Table.Body>
 
-                      <Table.Row >
+                ))}
 
-                        <Table.Cell></Table.Cell>
+              </Table>
+                    
+            </div>
 
-                        <Table.Cell>Date updated</Table.Cell>
+          </div>
 
-                        <Table.Cell>Image</Table.Cell>
+          {/* graph */}
+          <div className="space-y-5">
 
-                        <Table.Cell>title</Table.Cell>
+            <div className="flex justify-between">
 
-                        <Table.Cell>tag1</Table.Cell>
+              <span className="title2">Order stast </span>
 
-                        <Table.Cell>tag2</Table.Cell>
+              <select name="" id="" className="rounded-xl dark:text-slate-600">
 
-                        <Table.Cell>Action</Table.Cell>
+                <option value="" className="">28 days</option>
 
-                      </Table.Row>
+                <option value="" className="">7days</option>
 
-                    </Table.Body>
+                <option value="" className="">365 days</option>
 
-                    {stats?.last5Products.map((product,index) => (
+              </select>
 
-                      <Table.Body>
+            </div>
 
-                        <Table.Row>
+            <ResponsiveContainer width="100%" height={400}>
 
-                          <Table.Cell>{index +1}.</Table.Cell>
+         
+              <img 
+                src="https://user-images.githubusercontent.com/15953522/49493502-63e21d00-f882-11e8-911c-1d7655f393e8.png" 
+                alt="No Data" 
+                className="w-full h-full "
+              />
+                   
 
-                          <Table.Cell>
-                            {new Date(product.createdAt).toLocaleDateString()}
-                          </Table.Cell>
+            </ResponsiveContainer>
 
-                          <Table.Cell>
+          </div>
 
-                            <img 
-                              src={product.images[0]}
-                              alt="" 
-                              className="w-20 h-10"
-                            />
+        </section>
 
-                          </Table.Cell>
+      )}
 
-                          <Table.Cell>
-                            {product.name}
-                          </Table.Cell>
+      {!loading && !error && (
 
-                          <Table.Cell>
-                            {product.tag1}
-                          </Table.Cell>
+        <section className="section space-y-20">
 
-                          <Table.Cell>
-                            {product.tag2}
-                          </Table.Cell>
+          <h2 className="title ">Dashboard</h2>
 
-                          <Table.Cell>
+          {/* stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
 
-                            <div className="flex item-center gap-x-2">
+            {data.map((stat) => (
 
-                              <span className="">
+              <div className="border p-4 shaodow-sm space-y-2 rounded-xl dark:border-gray-500" title={stat.title}>
 
-                                <Link to={`/product/${product._id}`}>
+                <div className="flex items-center justify-between text-sm">
 
-                                  <MdViewArray size={20}/>
+                  <span className="">{stat.title}</span>
 
-                                </Link>
+                  {stat.icon}
+                </div>
 
-                              </span>
+                <div className="">
 
-                              <span className="">
+                  <span className="text-2xl 2xl:text-4xl font-serif">{stat.value}</span>
 
-                                <Link to={`/edit-product/${product._id}`}>
+                </div>
 
-                                    <MdEdit size={20}/>
+                <span className="block text-xs">
+                  compare to previous month
+                </span>
 
-                                </Link>
+              </div>
 
-                              </span>
+            ))}
 
-                              <span className="">
+          </div>
 
-                                <FaTrash
-                                  size={20}
-                                  onClick={() => {setShowModal; setProductIdToDelete(product._id)}}
+          {/* last5products */}
+          <div className="">
+
+            <h2 className="title2 ">Last 5 products</h2>
+
+            <div className=" table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700 dark:scrollbar-thumb-slate-500">
+                  {stats?.last5Products?.length > 0 ? 
+                    (
+                      <Table>
+                        
+                        <Table.Body className="divide-y font-bold uppercase">
+
+                          <Table.Row >
+
+                            <Table.Cell></Table.Cell>
+
+                            <Table.Cell>Date updated</Table.Cell>
+
+                            <Table.Cell>Image</Table.Cell>
+
+                            <Table.Cell>title</Table.Cell>
+
+                            <Table.Cell>tag1</Table.Cell>
+
+                            <Table.Cell>tag2</Table.Cell>
+
+                            <Table.Cell>Action</Table.Cell>
+
+                          </Table.Row>
+
+                        </Table.Body>
+
+                        {stats?.last5Products.map((product,index) => (
+
+                          <Table.Body>
+
+                            <Table.Row>
+
+                              <Table.Cell>{index +1}.</Table.Cell>
+
+                              <Table.Cell>
+                                {new Date(product.createdAt).toLocaleDateString()}
+                              </Table.Cell>
+
+                              <Table.Cell>
+
+                                <img 
+                                  src={product.images[0]}
+                                  alt="" 
+                                  className="w-20 h-10"
                                 />
 
-                              </span>
+                              </Table.Cell>
 
-                            </div>
+                              <Table.Cell>
+                                {product.name}
+                              </Table.Cell>
 
-                          </Table.Cell>
+                              <Table.Cell>
+                                {product.tag1}
+                              </Table.Cell>
 
-                        </Table.Row>
-                        
-                      </Table.Body>
+                              <Table.Cell>
+                                {product.tag2}
+                              </Table.Cell>
 
-                    ))}
+                              <Table.Cell>
 
-                  </Table>
-                ) 
-                : 
-                (
-                  <p className="text-center font-semibold mt-20">No products yet</p>
-                )
-              }
-        </div>
+                                <div className="flex item-center gap-x-2">
 
-      </div>
+                                  <span className="">
 
-      {/* graph */}
-      <div className="space-y-5">
+                                    <Link to={`/product/${product._id}`}>
 
-        <div className="flex justify-between">
+                                      <MdViewArray size={20}/>
 
-          <span className="title2">Order stast </span>
+                                    </Link>
 
-          <select name="" id="" className="">
+                                  </span>
 
-            <option value="" className="">28 days</option>
+                                  <span className="">
 
-            <option value="" className="">7days</option>
+                                    <Link to={`/edit-product/${product._id}`}>
 
-            <option value="" className="">365 days</option>
+                                        <MdEdit size={20}/>
 
-          </select>
+                                    </Link>
 
-        </div>
+                                  </span>
 
-        <ResponsiveContainer width="100%" height={400}>
+                                  <span className="">
 
-              {
-                stats?.orderStats?.length > 0 ?
-                (
-                  <AreaChart data={stats?.orderStats}>
+                                    <FaTrash
+                                      size={20}
+                                      onClick={() => {setShowModal; setProductIdToDelete(product._id)}}
+                                    />
 
-                    <XAxis dataKey="_id"/>
+                                  </span>
 
-                    <YAxis/>
+                                </div>
 
-                    <Tooltip/>
+                              </Table.Cell>
 
-                    <Area
-                      type='monotone'
-                      dataKey='Total'
-                      stroke='#8884d8'
-                      fill='#8884d8'
-                    />
+                            </Table.Row>
+                            
+                          </Table.Body>
 
-                  </AreaChart>
-                )
-                 :
-                (
-                  <img 
-                    src="https://user-images.githubusercontent.com/15953522/49493502-63e21d00-f882-11e8-911c-1d7655f393e8.png" 
-                    alt="No Data" 
-                    className="w-full h-full "
-                  />
-                )
-              }
+                        ))}
 
-        </ResponsiveContainer>
+                      </Table>
+                    ) 
+                    : 
+                    (
+                      <p className="text-center font-semibold mt-20">No products yet</p>
+                    )
+                  }
+            </div>
 
-      </div>
+          </div>
 
-    </section>
+          {/* graph */}
+          <div className="space-y-5">
+
+            <div className="flex justify-between">
+
+              <span className="title2">Order stast </span>
+
+              <select name="" id="" className="rounded-xl dark:text-slate-600">
+
+                <option value="" className="">28 days</option>
+
+                <option value="" className="">7days</option>
+
+                <option value="" className="">365 days</option>
+
+              </select>
+
+            </div>
+
+            <ResponsiveContainer width="100%" height={400}>
+
+                  {
+                    stats?.orderStats?.length > 0 ?
+                    (
+                      <AreaChart data={stats?.orderStats}>
+
+                        <XAxis dataKey="_id"/>
+
+                        <YAxis/>
+
+                        <Tooltip/>
+
+                        <Area
+                          type='monotone'
+                          dataKey='Total'
+                          stroke='#8884d8'
+                          fill='#8884d8'
+                        />
+
+                      </AreaChart>
+                    )
+                    :
+                    (
+                      <img 
+                        src="https://user-images.githubusercontent.com/15953522/49493502-63e21d00-f882-11e8-911c-1d7655f393e8.png" 
+                        alt="No Data" 
+                        className="w-full h-full "
+                      />
+                    )
+                  }
+
+            </ResponsiveContainer>
+
+          </div>
+
+        </section>
+
+      )}
+
+      {!loading && error && (
+
+        <Error fetch={fetchStats}/>
+
+      )}
+
+    </>
 
   )
   
