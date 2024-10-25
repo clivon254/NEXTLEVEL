@@ -38,6 +38,8 @@ export default function Header() {
 
       localStorage.removeItem("token")
 
+      localStorage.removeItem("totalAmount")
+
       toast.success("you have signed out successfully")
 
       navigate('/')
@@ -203,11 +205,6 @@ export default function Header() {
                     
                       </Link>
 
-                      <Link to='/analytic'>
-
-                        <Dropdown.Item>Analytics</Dropdown.Item>
-                  
-                      </Link>
 
                       <Link to='/products'>
 
@@ -218,6 +215,12 @@ export default function Header() {
                       <Link to='/add-product'>
 
                         <Dropdown.Item>Add Product</Dropdown.Item>
+                  
+                      </Link>
+
+                      <Link to='/coupon'>
+
+                        <Dropdown.Item>Coupons</Dropdown.Item>
                   
                       </Link>
 

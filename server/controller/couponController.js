@@ -77,7 +77,7 @@ export const getCoupon = async (req,res,next) => {
 
     try
     {
-        const coupons = await Coupon.find({})
+        const coupons = await Coupon.find({}).sort({_id:-1})
 
         res.status(200).json({success:true , coupons})
 

@@ -12,7 +12,7 @@ const couponRouter = express.Router()
 couponRouter.post("/generate-coupon",verifyToken, generateCoupon)
 
 
-couponRouter.post("/apply-coupon", applyCoupon)
+couponRouter.post("/apply-coupon", verifyToken, applyCoupon)
 
 
 couponRouter.get("/get-coupons", getCoupon)

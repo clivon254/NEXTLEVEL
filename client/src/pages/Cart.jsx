@@ -7,14 +7,104 @@ import SlideProducts from '../components/SlideProducts'
 import { Table, TableRow } from 'flowbite-react'
 import { useNavigate } from 'react-router-dom'
 import { MdArrowCircleRight, MdArrowRight, MdArrowRightAlt } from 'react-icons/md'
+import axios from 'axios'
+import {toast} from "sonner"
 
 
 
 export default function Cart() {
 
-    const {getTotalCartAmount,cartData,products} = useContext(StoreContext)
+    const {getTotalCartAmount,setTotalAmount,cartData,products,token,url,fetchCartItems,totalAmount} = useContext(StoreContext)
 
     const navigate = useNavigate()
+
+    const  [loading, setLoading] = useState(false)
+
+    const [data, setData] = useState({
+      totalCartAmount:getTotalCartAmount()
+    })
+
+    // increase cart
+    const handleIncreaseCart = async (itemId,size) => {
+
+      try
+      {
+
+        const data = {
+          itemId:itemId,
+          size:size
+        }
+
+        const res = await axios.post(url + "/api/cart/add-cart",data,{headers:{token}})
+
+        if(res.data.success)
+        {
+          fetchCartItems(token)
+        }
+
+      }
+      catch(error)
+      {
+        console.log(error.message)
+      }
+
+    }
+
+    console.log(data)
+
+    // decrease cart
+    const handleDecreaseCart = async (itemId,size) => {
+      try
+      {
+
+        const data = {
+          itemId:itemId,
+          size:size
+        }
+
+        const res = await axios.post(url + "/api/cart/remove-cart",data,{headers:{token}})
+
+        if(res.data.success)
+        {
+          fetchCartItems(token)
+        }
+
+      }
+      catch(error)
+      {
+        console.log(error.message)
+      }
+    }
+
+    // apply coupon
+    const applyCoupons = async () => {
+
+      try
+      {
+        setLoading(true)
+
+        const res = await axios.post(url + "/api/coupon/apply-coupon",data,{headers:{token}})
+
+        if(res.data.success)
+        {
+          setLoading(false)
+
+          setTotalAmount(res.data.newTotalCartAmount)
+
+          toast.success("coupon applied successfully")
+
+          localStorage.setItem("totalAmount" ,JSON.stringify(res.data.newTotalCartAmount))
+        }
+
+      }
+      catch(error)
+      {
+        console.log(error.message)
+
+        setLoading(false)
+      }
+
+    }
 
 
   return (
@@ -101,9 +191,11 @@ export default function Cart() {
 
                               <div className="">
 
-                                <span className="border p-1 text-xl font-bold cursor-pointer">-</span>
+                                <span className="border p-1 text-xl font-bold cursor-pointer" onClick={() => handleDecreaseCart(item._id,item.size)}>-</span>
+
                                 <span className="border p-1 text-xl font-bold ">{item.quantity}</span>
-                                <span className="border p-1 text-xl font-bold cursor-pointer">+</span>
+                                
+                                <span className="border p-1 text-xl font-bold cursor-pointer" onClick={() => handleIncreaseCart(item._id,item.size)}>+</span>
 
                               </div>
 
@@ -202,11 +294,29 @@ export default function Cart() {
                   <input 
                      type="text" 
                      className="input"
+                     value={data.code}
+                     onChange={(e) => setData({...data,code:e.target.value})}
                      placeholder='code'
                   />
 
-                  <button className="btn rounded-xl">
-                    submit
+                  <button 
+                      className="btn rounded-xl"
+                      onClick={applyCoupons}
+                      disabled={loading}
+                  >
+                   {loading ? 
+                   (
+                    <div className="">
+
+                      <span className="block Loading"/> Loading ...
+
+                    </div>
+                   ) 
+                   : 
+                   (
+                    "submit"
+                   )
+                   }
                   </button>
 
                 </div>

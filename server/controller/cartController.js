@@ -64,7 +64,7 @@ export const removeFromCart = async (req,res,next) => {
 
     const {id} = req.user
 
-    const {itemId} = req.body
+    const {itemId,size} = req.body
 
     try
     {
@@ -84,14 +84,24 @@ export const removeFromCart = async (req,res,next) => {
 
         let cartData = await userData.cartData
 
-        if(cartData[itemId] > 0)
+        if(cartData[itemId])
         {
-            cartData[itemId] -= 1
+            if(cartData[itemId][size] > 1)
+            {
+                cartData[itemId][size] -= 1
+            }
+            else
+            {
+                cartData[itemId] = {}
+
+                delete cartData[itemId]
+            }
         }
         else
-        {
-           return next(errorHandler(404,`${product.name} is not in the cart`))
+        {  
+            return next(errorHandler(404, `${product.name} is not in the cart`));
         }
+       
 
         await User.findByIdAndUpdate(id, {cartData})
 

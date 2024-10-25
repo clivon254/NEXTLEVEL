@@ -149,6 +149,8 @@ export default function CheckOut() {
 
               setData({})
 
+              localStorage.removeItem("totalAmount")
+
               setPaymentmethod(null)
 
               setShippingMethod(null)
@@ -179,6 +181,8 @@ export default function CheckOut() {
                 toast.success("prompt has been sent to your phone")
 
                 fetchCartItems(token)
+
+                localStorage.removeItem("totalAmount")
 
                 setData({})
 
@@ -212,6 +216,8 @@ export default function CheckOut() {
 
               navigate('/order')
 
+              localStorage.removeItem("totalAmount")
+
               fetchCartItems(token)
 
               setData({})
@@ -220,13 +226,13 @@ export default function CheckOut() {
 
               setShippingMethod(null)
 
-            }
+             }
             else
             {
               setLoading(false)
 
               console.log("check the api")
-            }
+             }
           }
           catch(error)
           {
