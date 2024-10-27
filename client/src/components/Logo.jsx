@@ -2,7 +2,7 @@
 
 
 import React from 'react'
-import Logo from "../assets/Logo.png"
+import logo from "../assets/Logo.png"
 
 
 
@@ -13,7 +13,7 @@ export default function Logo() {
     <div className=' text-xl sm:text-2xl lg:text-3xl  2xl:text-4xl font-serif'>
         
         <img 
-          src={Logo}
+          src={logo}
           alt="" 
           className="h-20 w-20" 
         />
