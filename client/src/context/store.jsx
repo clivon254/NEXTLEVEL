@@ -1,7 +1,7 @@
 
 
 import axios from 'axios'
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 
@@ -32,6 +32,10 @@ export default function StoreContextProvider(props){
 
   const [cartData, setCartData] = useState([])
 
+  const [search ,setSearch] = useState("")
+
+  const [showSearch , setShowSearch] = useState(false)
+  
 
 
   // fetchProducts
@@ -175,7 +179,8 @@ export default function StoreContextProvider(props){
 
 
   }
-
+  
+  
 
   useEffect(() => {
 
@@ -219,7 +224,6 @@ export default function StoreContextProvider(props){
 
   },[cartItems])
 
-  
 
 
   const contextValue = {

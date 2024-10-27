@@ -121,7 +121,7 @@ export default function DashSide() {
                     </Link>
 
                     <Link 
-                        to="/analytic"
+                        to="/coupon"
                         onClick={() => setOpen(false)}
                     >
 
@@ -130,7 +130,7 @@ export default function DashSide() {
                         as="div"
                         icon={MdDataset}
                         >
-                           Analytics
+                           Coupons
                         </Sidebar.Item>
 
                     </Link>

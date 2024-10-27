@@ -235,9 +235,9 @@ export default function AddProduct() {
 
             <option value="">choose gender</option>
 
-            <option value="male">male</option>
+            <option value="Male">Male</option>
 
-            <option value="female">female</option>
+            <option value="Female">Female</option>
 
             <option value="unisex">unisex</option>
 
@@ -252,9 +252,9 @@ export default function AddProduct() {
 
             <option value="">choose wear</option>
 
-            <option value="top">top</option>
+            <option value="Topwear">Topwear</option>
 
-            <option value="pant">pant</option>
+            <option value="Bottomwear">Bottomwear</option>
 
             <option value="any">any</option>
 

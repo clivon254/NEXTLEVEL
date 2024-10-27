@@ -286,74 +286,74 @@ export default function EditProduct() {
                 required
             />
 
-            <select  
-                className="input"
-                onChange={(e) => setFormData({...formData, tag1:e.target.value})}
-                value={formData.tag1}
-                required
-            >
+           <select  
+              className="input"
+              onChange={(e) => setFormData({...formData, tag1:e.target.value})}
+              value={formData.tag1}
+              required
+           >
 
-              <option value="">choose gender</option>
+            <option value="">choose gender</option>
 
-              <option value="male">male</option>
+            <option value="Male">Male</option>
 
-              <option value="female">female</option>
+            <option value="Female">Female</option>
 
-              <option value="unisex">unisex</option>
+            <option value="unisex">unisex</option>
 
-            </select>
+          </select>
 
-            <select  
-                className="input"
-                onChange={(e) => setFormData({...formData, tag2:e.target.value})}
-                value={formData.tag2}
-                required
-            >
+          <select  
+              className="input"
+              onChange={(e) => setFormData({...formData, tag2:e.target.value})}
+              value={formData.tag2}
+              required
+          >
 
-              <option value="">choose wear</option>
+            <option value="">choose wear</option>
 
-              <option value="top">top</option>
+            <option value="Topwear">Topwear</option>
 
-              <option value="pant">pant</option>
+            <option value="Bottomwear">Bottomwear</option>
 
-              <option value="any">any</option>
+            <option value="any">any</option>
 
-            </select>
+          </select>
 
-            {/* sizes */}
-            <div className="flex items-center gap-x-2">
+          {/* sizes */}
+          <div className="flex items-center gap-x-2">
 
-              <div onClick={() => addSizes("S")}>
+            <div onClick={() => addSizes("S")}>
 
-                <p className={`size ${formData.sizes?.includes("S") ? "size-active":""}`}> S</p>
-
-              </div>
-
-              <div onClick={() => addSizes("M")}>
-
-                <p className={`size ${formData.sizes?.includes("M") ? "size-active":""}`}> M</p>
-
-              </div>
-
-              <div onClick={() => addSizes("L")}>
-
-                <p className={`size ${formData.sizes?.includes("L") ? "size-active":""}`}> L</p>
-
-              </div>
-
-              <div onClick={() => addSizes("XL")}>
-
-                <p className={`size ${formData.sizes?.includes("XL") ? "size-active":""}`}> XL</p>
-
-              </div>
-
-              <div onClick={() => addSizes("XXL")}>
-
-                <p className={`size ${formData.sizes?.includes("XXL") ? "border-2 border-black  dark:border-secondaryDark":""}`}> XXL</p>
-
-              </div>
+              <p className={`size ${formData.sizes?.includes("S") ? "size-active":""}`}> S</p>
 
             </div>
+
+            <div onClick={() => addSizes("M")}>
+
+              <p className={`size ${formData.sizes?.includes("M") ? "size-active":""}`}> M</p>
+
+            </div>
+
+            <div onClick={() => addSizes("L")}>
+
+              <p className={`size ${formData.sizes?.includes("L") ? "size-active":""}`}> L</p>
+
+            </div>
+
+            <div onClick={() => addSizes("XL")}>
+
+              <p className={`size ${formData.sizes?.includes("XL") ? "size-active":""}`}> XL</p>
+
+            </div>
+
+            <div onClick={() => addSizes("XXL")}>
+
+              <p className={`size ${formData.sizes?.includes("XXL") ? "border-2 border-black  dark:border-secondaryDark":""}`}> XXL</p>
+
+            </div>
+
+          </div>
             
           </div>
 
