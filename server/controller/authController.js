@@ -166,7 +166,7 @@ export const forgotPassword = async (req,res,next) => {
             from:"NEXTLEVEL CLOTHING",
             to:user.email,
             subject:"Reset Password",
-            text:`Click on this link to reset your password:http://localhost:5173/reset-password/${token}`
+            text:`Click on this link to reset your password:https://nextlevel-1-9qp2.onrender.com/reset-password/${token}`
         }
 
         transporter.sendMail(mailOptions, (error ,info) => {

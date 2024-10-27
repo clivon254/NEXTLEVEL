@@ -43,6 +43,10 @@ input[type="text"]:not(:placeholder-shown) ~ .input-text{
   @apply text-blue-500 transform -translate-y-5 -translate-x-2 scale-75;
 }
 
+.search
+{
+    outline: none;
+}
 .Loading
 {
     @apply block rounded-full h-7 w-7 animate-spin border-4  border-r-textLight dark:border-r-textLight

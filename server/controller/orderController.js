@@ -16,7 +16,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRETE_KEY)
 // stripe
 export const stripePayment = async (req,res,next) => {
 
-    const frontend_url = "http://localhost:5173"
+    const frontend_url = "https://nextlevel-1-9qp2.onrender.com"
 
     const {items,address,paymentmethod,amount} = req.body
 
@@ -154,8 +154,8 @@ export const mpesaPayment = async (req,res,next) => {
             "PartyA":`254${phone}`,    
             "PartyB":shortcode,    
             "PhoneNumber":`254${phone}`,    
-            "CallBackURL": "https://5ecf-41-90-175-55.ngrok-free.app/api/order/callback",    
-            "AccountReference":"WEWE KIJANA YA MISATI TOKEA  ACHA UFALA,UMBWA WEWE KUBMAVU ZAKO",    
+            "CallBackURL": "https://nextlevel-dj4d.onrender.com/api/order/callback",    
+            "AccountReference":"NEXT LEVEL CLOTHING",    
             "TransactionDesc":"Test"
         },
         {

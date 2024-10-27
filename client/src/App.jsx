@@ -25,6 +25,7 @@ import Order from './pages/Order'
 import {Toaster} from "sonner"
 import ForgotPassword from './pages/ForgotPassword'
 import Verify from './pages/Verify'
+import SearchBar from './components/searchBar'
 
 
 export default function App() {
@@ -39,7 +40,9 @@ export default function App() {
 
         <Header/>
 
-         <div className="flex-1">
+        <SearchBar />
+
+        <div className="flex-1">
 
           <Routes>
 
@@ -87,7 +90,7 @@ export default function App() {
 
           </Routes>
           
-         </div>
+        </div>
 
         <FooterComp/>
 

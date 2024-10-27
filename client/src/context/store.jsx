@@ -14,7 +14,7 @@ export default function StoreContextProvider(props){
 
   const [token,setToken] = useState(null)
   
-  const url = "http://localhost:1200"
+  const url = "https://nextlevel-dj4d.onrender.com"
 
   const [open, setOpen] = useState(false)
 
@@ -36,6 +36,7 @@ export default function StoreContextProvider(props){
 
   const [showSearch , setShowSearch] = useState(true)
   
+  const [visible, setVisible] = useState(false)
 
 
   // fetchProducts
@@ -242,7 +243,8 @@ export default function StoreContextProvider(props){
     totalAmount,setTotalAmount,
     fetchCartItems,
     search, setSearch,
-    showSearch, setShowSearch
+    showSearch, setShowSearch,
+    visible ,setVisible
   }
  
   return (

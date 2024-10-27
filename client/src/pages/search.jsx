@@ -7,7 +7,7 @@ import ProductCard from '../components/ProductCard'
 
 export default function Search() {
   
-  const {products} = useContext(StoreContext)
+  const {products,search,showSearch} = useContext(StoreContext)
 
   const [showFilter, setShowFilter] = useState(false)
 
@@ -50,6 +50,11 @@ export default function Search() {
   const applyFilter = () => {
 
     let productsCopy = products.slice()
+
+    if(showSearch && search)
+     {
+       productsCopy = productsCopy.filter(item => item.name.toLowerCase().includes(search.toLowerCase()))
+     }
 
     if(tag1.length > 0)
     {
@@ -97,7 +102,7 @@ export default function Search() {
 
     applyFilter() 
 
-  },[tag1,tag2])
+  },[tag1,tag2,search,showSearch])
 
   useEffect(() => {
 

@@ -18,7 +18,7 @@ export default function Header() {
 
   const {currentUser} = useSelector(state => state.user)
   
-  const {getCartCount} = useContext(StoreContext)
+  const {getCartCount,setShowSearch} = useContext(StoreContext)
 
   const {theme} = useSelector(state => state.theme)
 
@@ -122,7 +122,7 @@ export default function Header() {
                classNAME="cursor-pointer"
               >
 
-                <MdSearch size={24}/>
+                <MdSearch size={24} onClick={() => setShowSearch(true)}/>
 
               </Link>
 
