@@ -22,7 +22,7 @@ const  PORT = process.env.PORT
 
 
 app.use(cors(
-    {origin:['https://5ecf-41-90-175-55.ngrok-free.app','http://localhost:5173']}
+    {origin:['https://nextlevel-1-9qp2.onrender.com','https://nextlevel-dj4d.onrender.com','http://localhost:5173']}
 ))
 
 app.use(express.json())
