@@ -34,7 +34,7 @@ export default function StoreContextProvider(props){
 
   const [search ,setSearch] = useState("")
 
-  const [showSearch , setShowSearch] = useState(false)
+  const [showSearch , setShowSearch] = useState(true)
   
 
 
@@ -241,9 +241,10 @@ export default function StoreContextProvider(props){
     cartData,setCartData,
     totalAmount,setTotalAmount,
     fetchCartItems,
+    search, setSearch,
+    showSearch, setShowSearch
   }
  
-
   return (
     
     <StoreContext.Provider value={contextValue}>

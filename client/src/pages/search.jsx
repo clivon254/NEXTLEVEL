@@ -18,7 +18,7 @@ export default function Search() {
   const [tag2 ,setTag2] = useState([])
 
   const [sortType, setSortType] = useState('relevant')
-
+  
 
   const toggleTag1 = (e) => {
 
@@ -37,7 +37,7 @@ export default function Search() {
 
     if(tag2.includes(e.target.value))
     {
-      setTag1(prev => prev.filter(item => item !== e.target.value))
+      setTag2(prev => prev.filter(item => item !== e.target.value))
     }
     else
     {
@@ -67,7 +67,22 @@ export default function Search() {
   // sort Product
   const sortProduct = () => {
 
-    let fcCopy = filteredProducts.slice()
+    let fpCopy = filteredProducts.slice()
+
+    switch(sortType) {
+
+      case 'low-high':
+        setFilteredProducts(fpCopy.sort((a,b) => (a.discountPrice - b.discountPrice)))
+        break;
+
+      case 'high-low':
+        setFilteredProducts(fpCopy.sort((a,b) => (b.discountPrice - a.discountPrice)))
+        break;
+
+      default:
+        applyFilter();
+        break;
+    }
   }
 
 
@@ -77,11 +92,18 @@ export default function Search() {
 
   },[products])
 
+
   useEffect(() => {
 
     applyFilter() 
 
   },[tag1,tag2])
+
+  useEffect(() => {
+
+    sortProduct()
+
+  },[sortType])
 
 
   return (
@@ -210,11 +232,14 @@ export default function Search() {
             <h2 className="">ALL COLLECTION</h2>
 
             {/* product sort */}
-            <select  className="text-xs rounded-xl dark:text-gray-500">
+            <select  
+                className="text-xs rounded-xl dark:text-gray-500"
+                onChange={(e) => setSortType(e.target.value)}
+            >
 
               <option value="relevant">Sort by: Relevant</option>
 
-              <option value="relevant">Sort by:  Low to High</option>
+              <option value="low-high">Sort by:  Low to High</option>
 
               <option value="high-low">Sort by: High to Low</option>
 
