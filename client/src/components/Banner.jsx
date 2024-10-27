@@ -5,6 +5,7 @@ import React from 'react'
 import img1 from "../assets/img1.webp"
 import img2 from "../assets/img2.jpg"
 import img3 from "../assets/img3.jpg"
+import { Link } from 'react-router-dom'
 
 
 export default function Banner() {
@@ -77,7 +78,13 @@ export default function Banner() {
           <div className="flex md:flex-col md:items-start lg:flex-row md:gap-y-2 justify-between items-center">
 
             <button className="btn rounded-full">
+
+              <Link to="/search">
+
               shop now
+
+              </Link>
+
             </button>
 
             <button className="btn2 rounded-full">
